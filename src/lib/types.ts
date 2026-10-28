@@ -1,0 +1,112 @@
+/**
+ * @description This type is used to define the params for a dynamic route in Next.js.
+ */
+export type pageParams = Promise<{ slug: string }>
+
+/**
+ * @description This interface defines the structure (i.e., contents) of a blog post card.
+ */
+export interface BlogPostProps {
+  slug: string
+  title: string
+  summary: string
+  date: string
+  tags?: string[]
+  readingTime?: number
+}
+
+/**
+ * @description This interface defines the structure (i.e., contents) of a project card.
+ */
+export interface ProjectProps {
+  slug: string
+  title: string
+  image: string
+  description: string
+  startDate: string
+  endDate: string
+  techStack: string[]
+  teamSize?: number
+  role?: string
+  githubUrl?: string
+  paperUrl?: string
+}
+
+/**
+ * @description This interface defines the structure (i.e., contents) of a work experience item.
+ */
+export interface WorkItemProps {
+  slug: string
+  company: string
+  title: string
+  start: string
+  end: string
+  description: string
+  locations: string[]
+  logoUrl?: string
+  companyUrl?: string
+  techStack?: string[]
+}
+
+/**
+ * @description This type is used to define the params for a dynamic tag route in Next.js.
+ */
+export type tagPageParams = Promise<{ tag: string }>
+
+/**
+ * @description Social media platforms supported in `footerConfig.socialLinks` and
+ * `contactConfig.featuredChannels` (src/data/content.ts). Enum values match the plain string
+ * keys used in those config objects, so existing string keys there keep type-checking against
+ * this enum without needing bracket syntax everywhere.
+ */
+export enum SocialPlatform {
+  GitHub = "github",
+  LinkedIn = "linkedin",
+  GoodReads = "goodreads",
+  Instagram = "instagram",
+  Twitter = "twitter",
+  Reddit = "reddit",
+  Dribbble = "dribbble",
+  YouTube = "youtube",
+  Bluesky = "bluesky",
+  StackOverflow = "stackoverflow",
+  Email = "email",
+}
+
+/**
+ * @description Accent color themes available for the portfolio.
+ * Set `siteMetadata.theme` in src/data/metadata.ts to one of these values.
+ */
+export type Theme =
+  | "blue"
+  | "purple"
+  | "green"
+  | "orange"
+  | "rose"
+  | "teal"
+  | "indigo"
+  | "amber"
+  | "cyan"
+  | "violet"
+  | "pink"
+  | "lime"
+
+/**
+ * @description Shape of the site-wide metadata configuration object in src/data/metadata.ts.
+ */
+export interface SiteMetadata {
+  theme: Theme
+  title: string
+  description: string
+  keywords: string[]
+  author: {
+    name: string
+    url: string
+  }
+  siteUrl: string
+  social: {
+    twitter: string
+  }
+  /** Set to null to use the auto-generated dynamic OG image for the home page. */
+  ogImage: string | null
+}
