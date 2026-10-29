@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "find public -name .DS_Store -delete",
+    "prebuild": "echo 'Skipping prebuild cleanup'",
     "build": "next build",
     "start": "next start",
     "restart-prod": "next build && next start",
@@ -65,7 +65,10 @@
     "typescript": "6.0.3",
     "vitest": "5.0.5"
   },
-  
+  "overrides": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.7"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}": "eslint --max-warnings=0",
     "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts,json,css,md,mdx,yml,yaml}": "prettier --check"
