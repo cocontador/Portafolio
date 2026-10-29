@@ -13,14 +13,6 @@ import { ProjectProps } from "@/lib/types"
 
 /**
  * Client component used to render the projects page from within the server component.
- * @param uniqueTechStack - the list of unique tech stack items with counts
- * @param selectedTechStack - the currently selected tech stack items
- * @param sortOrder - the current sort order ('newest' or 'oldest')
- * @param filteredProjects - the list of projects after filtering
- * @param paginatedProjects - the list of projects for the current page
- * @param currentPage - the current page number
- * @param totalPages - the total number of pages
- * @param baseUrl - the base URL for pagination links
  */
 export default function ProjectsClientUI({
   uniqueTechStack,
@@ -40,7 +32,6 @@ export default function ProjectsClientUI({
   currentPage: number
   totalPages: number
   baseUrl: string
-  
 }) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -89,7 +80,6 @@ export default function ProjectsClientUI({
 
   // Remove a single tech from active filters
   const handleRemoveTech = (tech: string) => {
-    // Remove tech from draft and apply immediately
     const newDrafts = techStackDrafts.filter(t => t !== tech)
     setTechStackDrafts(newDrafts)
     const params = new URLSearchParams(searchParams.toString())
@@ -108,7 +98,7 @@ export default function ProjectsClientUI({
   }
 
   return (
-    <section className="px-4 max-w-4xl mx-auto flex flex-col flex-1">
+    <section className="px-4 max-w-4xl mx-auto flex flex-col flex-1 w-full max-w-full overflow-x-hidden">
       <div className="flex flex-wrap justify-between gap-4 mb-8 items-center w-full">
         {/* Tech Stack Filter Dropdown - Left */}
         <div className="relative flex-grow md:flex-grow-0">
@@ -133,10 +123,7 @@ export default function ProjectsClientUI({
               onChange={handleSortChange}
               options={[
                 { label: "Newest First", value: "newest" },
-                {
-                  label: "Oldest First",
-                  value: "oldest",
-                },
+                { label: "Oldest First", value: "oldest" },
               ]}
             />
           </Suspense>
@@ -155,7 +142,7 @@ export default function ProjectsClientUI({
         {filteredProjects.length > 0 ? (
           <motion.div
             key="projects"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full min-w-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

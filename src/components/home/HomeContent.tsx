@@ -14,12 +14,12 @@ import { homeIntroConfig } from "@/data/content"
 import { BlogPostProps, ProjectProps, WorkItemProps } from "@/lib/types"
 
 interface HomeContentProps {
-  blog: BlogPostProps[]
+  blog?: BlogPostProps[] // Opcional por si acaso
   work: WorkItemProps[]
   projects: ProjectProps[]
 }
 
-export default function HomeContent({ blog, work, projects }: HomeContentProps) {
+export default function HomeContent({ work, projects }: HomeContentProps) {
   return (
     <MotionConfig reducedMotion="user">
       <section className="px-4 max-w-4xl mx-auto">
@@ -44,17 +44,17 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
             </motion.span>
           </h1>
 
-          {/* Contenedor con la foto flotada y el texto al lado */}
-          <div className="clearfix">
-            {/* Foto Circular con float a la izquierda */}
+          {/* Contenedor principal con flex para móvil y float para pantallas grandes */}
+          <div className="flex flex-col items-center md:block">
+            {/* Foto Circular: centrada en móvil, flotada a la izquierda en pantallas medianas (md) */}
             <motion.img
               variants={staggerItemVariants}
               src="/projects/concon.jpeg"
               alt="Constanza Contador"
-              className="float-left w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-lg border-2 border-primary mr-6 mb-4 flex-shrink-0"
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-lg border-2 border-primary mb-6 md:float-left md:mr-6 md:mb-4 flex-shrink-0"
             />
 
-            {/* Párrafos de texto que rodean la foto */}
+            {/* Párrafos de texto: justificados para ordenarlos en el teléfono */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -66,7 +66,7 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
                 <motion.p
                   key={index}
                   variants={staggerItemVariants}
-                  className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-300 text-left"
+                  className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-300 text-justify"
                 >
                   {paragraph}
                 </motion.p>
@@ -78,7 +78,7 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
         <QuickFacts />
         <WorkPreview work={work} />
         <ProjectsPreview projects={projects} />
-        </section>
+      </section>
     </MotionConfig>
   )
 }

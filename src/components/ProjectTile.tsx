@@ -34,13 +34,12 @@ export default function ProjectTile({
   endDate,
   priority = false,
   demoId,
-
 }: ProjectTileProps) {
   return (
-    <Link href={`/projects/${slug}`} className="block h-full">
+    <Link href={`/projects/${slug}`} className="block h-full w-full max-w-full">
       <AnimatedCard
         className={cn(
-          "group relative overflow-hidden rounded-lg h-full flex flex-col",
+          "group relative overflow-hidden rounded-lg h-full flex flex-col w-full max-w-full",
           "border border-gray-300 dark:border-gray-700",
           "bg-white dark:bg-gray-900",
           "shadow-sm hover:shadow-2xl hover:shadow-accent-500/20",
@@ -70,44 +69,43 @@ export default function ProjectTile({
         {/* Title, Description, and Metadata */}
         <div
           className={cn(
-            "flex-1 p-4",
+            "flex-1 p-4 w-full min-w-0 overflow-hidden",
             "bg-linear-to-b from-white to-gray-50/70",
             "dark:from-gray-900 dark:to-gray-900/65",
             "flex flex-col gap-3"
           )}
         >
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 w-full min-w-0">
             <h3
               className={cn(
-                "text-lg font-bold text-gray-900 dark:text-white",
+                "text-lg font-bold text-gray-900 dark:text-white break-words text-center w-full",
                 "group-hover:text-accent-600 dark:group-hover:text-accent-400",
-                "transition-colors duration-200 text-center"
+                "transition-colors duration-200"
               )}
             >
               {title}
             </h3>
 
-            {/* Botón Ver Demo integrado a tono con el carrusel */}
-            {/* Botón dinámico */}
+            {/* Botón Ver Demo integrado */}
             <span
-            onClick={(e) => {
-              e.preventDefault()
-              // Navegación directa con el hash limpio y respaldo por si demoId viene vacío
-              window.location.href = `/projects/${slug}#${demoId || "demo-video"}`
-            }}
-            className={cn(
-              "inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium",
-              "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300",
-              "border border-gray-300 dark:border-gray-700",
-              "hover:border-accent-500 dark:hover:border-accent-400 hover:text-accent-500 dark:hover:text-accent-400",
-              "transition-all cursor-pointer shadow-xs"
-            )}
-          >
-            <FiVideo className="w-3.5 h-3.5 text-accent-500" />
-            Ver Demo
-          </span>
+              onClick={(e) => {
+                e.preventDefault()
+                window.location.href = `/projects/${slug}#${demoId || "demo-video"}`
+              }}
+              className={cn(
+                "inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium",
+                "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300",
+                "border border-gray-300 dark:border-gray-700",
+                "hover:border-accent-500 dark:hover:border-accent-400 hover:text-accent-500 dark:hover:text-accent-400",
+                "transition-all cursor-pointer shadow-xs"
+              )}
+            >
+              <FiVideo className="w-3.5 h-3.5 text-accent-500 shrink-0" />
+              Ver Demo
+            </span>
+
             {description && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed text-center mt-1">
+              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed text-center mt-1 w-full break-words">
                 {description}
               </p>
             )}
@@ -115,8 +113,8 @@ export default function ProjectTile({
 
           {/* Date Range and Duration */}
           {startDate && endDate && (
-            <div className="flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-              <FaCalendarAlt className="w-3 h-3" />
+            <div className="flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400 text-center flex-wrap">
+              <FaCalendarAlt className="w-3 h-3 shrink-0" />
               <span>{formatDateRange(startDate, endDate)}</span>
               <span>·</span>
               <span>{calculateDuration(startDate, endDate)}</span>
@@ -131,7 +129,7 @@ export default function ProjectTile({
               const remainingCount = techStack.length - MAX_PROJECT_TILE_TECH_BADGES
 
               return (
-                <div className="flex flex-wrap justify-center gap-2">
+                <div className="flex flex-wrap justify-center gap-2 w-full mt-auto pt-2">
                   {visibleTechStack.map(techName => (
                     <TechBadge key={techName} techName={techName} variant="small" />
                   ))}
