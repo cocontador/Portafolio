@@ -17,7 +17,7 @@ export default function Breadcrumbs() {
   const initials = getInitials(homeIntroConfig.name)
 
   // Only show breadcrumbs for /blog, /projects, /work and their subpaths
-  const allowedRoots = ["blog", "projects", "work"]
+  const allowedRoots = [ "projects", "work"]
 
   // Show breadcrumbs for allowed root paths and their subpaths
   // Note: We don't validate slugs here as invalid slugs will 404 at the page level

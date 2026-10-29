@@ -34,7 +34,7 @@ export default function QuickFacts() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900 dark:text-white"
       >
-        Quick &amp; Fun Facts
+        Vista rápida Sobre mí
       </motion.h2>
 
       <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-4 max-w-4xl mx-auto">

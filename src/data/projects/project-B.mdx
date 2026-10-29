@@ -1,58 +1,72 @@
 ---
-title: VoteChain
-image: /projects/pictureB.jpg
-description: A decentralized voting system using blockchain technology.
-startDate: 2022-03
-endDate: 2022-09
+title: Bosque Antiguo (Web)
+image: /projects/bosque-antiguo.png
+demoId: "demo-vivero"
+description: Aplicación web interactiva para la tienda online Bosque Antiguo, desarrollada con React y Vite.
+startDate: 2025-08
+endDate: 2026-06
 techStack:
-  - Solidity
-  - Ethereum
   - React
-  - Web3.js
-  - IPFS
-teamSize: 5
-role: Blockchain Developer
-githubUrl: https://github.com/project-VoteChain
-paperUrl: https://arxiv.org
+  - Vite
+  - JavaScript
+  - HTML5
+  - CSS3
+  - ESLint
+teamSize: 3
+role: Frontend Developer
+githubUrl: https://github.com/cmongez/bosque-antiguo-react.git
+demoUrl: "/projects/demo-vivero.mp4"
 ---
 
-# Introduction
+# Introducción
 
-Project VoteChain leverages blockchain technology to create a secure and transparent voting system. It eliminates the risk of tampering and ensures that every vote is counted accurately.
+**Bosque Antiguo (Web App)** es la versión web interactiva de la tienda online, desarrollada utilizando **React** y **Vite** para ofrecer una experiencia de usuario rápida, moderna y altamente receptiva.
 
-## Key Features
+Este proyecto sirvió como base estructural y conceptual para entender el flujo de comercio electrónico, el manejo de componentes reutilizables y la navegación dinámica antes de dar el salto al desarrollo móvil nativo.
 
-- **Decentralized Voting**: Votes are recorded on the Ethereum blockchain, ensuring immutability.
-- **Voter Authentication**: Secure voter registration using cryptographic keys.
-- **Anonymous Voting**: Ensures voter privacy while maintaining transparency.
-- **Real-Time Results**: Results are updated in real-time as votes are cast.
+## Características Principales
 
-## Technical Insights
+- **Entorno de Desarrollo Rápido**: Configurado con **Vite** para aprovechar HMR (*Hot Module Replacement*) y optimizar el rendimiento de compilación.
+- **Arquitectura de Componentes**: Interfaces modulares y escalables construidas con **React**.
+- **Calidad de Código y Linting**: Configuración estricta con **ESLint** para aplicar buenas prácticas y prevenir errores comunes en el frontend.
+- **Diseño Adaptativo**: Estilos cuidados para asegurar una visualización fluida tanto en dispositivos móviles como en pantallas de escritorio.
 
-- **Smart Contracts**: Developed using Solidity to handle voting logic and ensure tamper-proof results.
-- **Frontend**: Built with React and Web3.js for seamless interaction with the blockchain.
-- **Storage**: Used IPFS for storing voter data securely and efficiently.
-- **Security**: Implemented multi-signature wallets for election administrators to prevent unauthorized access.
+## Perspectiva Técnica
 
-> **Note**: Contracts are immutable once deployed, so every one of them went through testnet rehearsals before the pilot election.
+- **Empaquetado y Build**: Uso de Vite para una gestión eficiente de módulos y optimización de código listo para producción.
+- **Gestión del DOM Virtual**: Aprovechamiento de la reactividad de React para renderizar dinámicamente catálogos de productos, carritos y formularios interactivos.
+- **Estandarización**: Estructura de carpetas limpia orientada a componentes, enfocada en la gestión de propiedades (*props*) y estados locales.
 
-## Challenges and Solutions
+| Servicio / Herramienta | Responsabilidad |
+| :--- | :--- |
+| **React** | Biblioteca principal para el desarrollo de interfaces basadas en componentes |
+| **Vite** | Entorno de desarrollo y empaquetador ultrarrápido |
+| **ESLint** | Análisis estático de código para garantizar consistencia y calidad |
+| **HTML / CSS** | Estructura semántica y diseño visual de la tienda |
 
-- **Scalability**: Optimized smart contracts to reduce gas fees and improve transaction throughput. Packing storage variables, avoiding unnecessary on-chain loops, and batching registrations kept the cost per vote low.
-- **Security**: Conducted rigorous testing to prevent vulnerabilities like reentrancy attacks. Unit tests, fuzzing, and static analysis tools were run on every contract change, and the contracts followed well-reviewed patterns instead of custom logic.
-- **User Experience**: Designed an intuitive UI to make blockchain technology accessible to non-technical users. Guided wallet setup, plain-language status messages, and clear transaction confirmations hid most of the blockchain complexity.
-- **Voter Privacy vs. Verifiability**: Votes had to be both anonymous and publicly verifiable. Separating voter identity from ballot data and using cryptographic commitments let anyone verify the tally without linking a vote to a person.
-- **Immutability and Bugs**: Deployed contracts cannot be patched, so a mistake could invalidate an election. A staged rollout on testnets, a dry-run election, and a carefully scoped upgrade path for non-critical logic reduced that risk.
-- **Off-Chain Data Availability**: Relying on IPFS meant data could become unavailable if it was not pinned. Pinning services and redundant nodes kept election data accessible for the full election period.
-- **Network Congestion**: Gas prices spiked unpredictably, which risked blocking voters at crucial moments. Adjustable gas settings, transaction retries, and a longer voting window made the system resilient to congestion.
+## Desafíos y Soluciones
 
-## Outcome
+- **Optimización del Rendimiento**: Configuración del entorno de Vite y comprensión de sus ventajas de velocidad en comparación con empaquetadores tradicionales.
+- **Modularización**: División de la tienda en componentes reutilizables (tarjetas de productos, barras de navegación, formularios) para mejorar la mantenibilidad del código.
+- **Consistencia Visual**: Asegurar una transición fluida entre el concepto estético de la marca y su implementación real en el frontend.
 
-Project VoteChain was successfully piloted in a university election, receiving praise for its transparency and ease of use. It demonstrated the potential of blockchain in revolutionizing traditional voting systems.
+> ⚠️ **Lección aprendida**: Establecer patrones de código limpios y una correcta separación de componentes desde el inicio facilitó enormemente escalar la aplicación y adaptar posteriormente su lógica a un ecosistema móvil.
 
-- **Transparency and Trust**: Participants could independently verify that their vote was recorded and counted, which addressed the main trust concerns raised before the pilot.
-- **Security Review**: Contract audits and extensive testing found no critical vulnerabilities, and the multi-signature setup for administrators proved effective in keeping election controls safe.
-- **Cost Efficiency**: Gas optimizations kept the cost per vote low enough to make a larger-scale election realistic.
-- **Accessibility**: Many voters had never used a crypto wallet before, and the guided onboarding flow made participation feasible without technical knowledge.
-- **Research Impact**: The design and findings were written up in an accompanying paper, contributing to discussions on the practicality of blockchain-based voting.
-- **Future Directions**: Next steps include layer-2 deployment for better throughput, zero-knowledge proofs for stronger voter privacy, and integration with institutional identity systems.
+## Resultado
+
+La aplicación web se desplegó con éxito, ofreciendo una plataforma de compras rápida, funcional y escalable.
+
+- **Experiencia de Usuario**: Una interfaz fluida que simplifica la exploración del catálogo y la interacción con la tienda.
+- **Colaboración en Equipo**: Desarrollado de forma colaborativa junto a Paulina Zúñiga, César Mongez y Constanza Contador.
+- **Evolución Tecnológica**: El éxito de esta versión web inspiró y pavimentó el camino para su contraparte móvil nativa en Android.
+
+<div id="demo-vivero" className="my-6 overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-lg">
+  <video
+    controls 
+    preload="metadata" 
+    className="w-full h-auto"
+  >
+    <source src="/projects/demo-vivero.mp4" type="video/mp4" />
+    Tu navegador no soporta la reproducción de video.
+  </video>
+</div>

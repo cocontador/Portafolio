@@ -4,19 +4,16 @@ import Link from "next/link"
 import HoverArrow from "@/components/HoverArrow"
 import { cn } from "@/lib/utils"
 
-interface ViewAllButtonProps {
+interface ViewAllHeaderProps {
   title: string
   pageUrl: string
-  itemCount: number
+  linkText?: string // Texto opcional para el botón (por defecto dirá "Ver todo")
 }
 
 /**
  * A functional component that renders a "View All" button with a link to a specified page.
- * @param title - The title to be displayed in the header (e.g., "Recent Work").
- * @param pageUrl - The URL to which the button should link (e.g., "/projects").
- * @param itemCount - The total count of items to display on the "View All" button.
  */
-export default function ViewAllHeader({ title, pageUrl, itemCount }: ViewAllButtonProps) {
+export default function ViewAllHeader({ title, pageUrl, linkText = "Ver todo" }: ViewAllHeaderProps) {
   return (
     <div className="flex justify-between items-center mb-6">
       <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{title}</h2>
@@ -31,17 +28,8 @@ export default function ViewAllHeader({ title, pageUrl, itemCount }: ViewAllButt
           "dark:focus-visible:ring-offset-black rounded-sm"
         )}
       >
-        <span>View all</span>
-        <span
-          className={cn(
-            "inline-flex items-center justify-center min-w-5 h-5 px-1.5",
-            "bg-accent-500/15 dark:bg-accent-500/15 text-accent-600 dark:text-accent-400",
-            "rounded text-xs font-bold",
-            "group-hover:bg-accent-500/25 dark:group-hover:bg-accent-500/25",
-            "transition-colors duration-200"
-          )}
-        >
-          {itemCount}
+        <span className="text-sm font-semibold text-accent-600 dark:text-accent-400">
+          {linkText}
         </span>
         <HoverArrow className="text-base" />
       </Link>

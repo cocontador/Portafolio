@@ -34,7 +34,7 @@ export default async function Image() {
   const { accent, accentBg, accentText } = getOgThemeColors()
   const { name, facts } = homeIntroConfig
 
-  const subtitle = [facts.role, facts.company, facts.location].filter(Boolean).join(" · ")
+  const subtitle = [facts.role, facts.location].filter(Boolean).join(" · ")
   const siteHost = siteMetadata.siteUrl.replace(/^https?:\/\//, "")
 
   return new ImageResponse(

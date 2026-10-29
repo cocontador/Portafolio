@@ -1,67 +1,165 @@
 ---
-title: YouNovate
-image: /projects/pictureA.jpg
-description: A platform for innovative ideas and solutions.
-startDate: 2023-01
-endDate: 2023-06
+title: WALO — Plataforma SaaS para microemprendedores
+image: /projects/walo.png
+demoId: "demo-walo"
+description: Plataforma SaaS multitenant para la digitalización de microemprendedores chilenos con catálogo, pedidos por WhatsApp y pagos en Khipu.
+startDate: 2026-03
+endDate: 2026-07
 techStack:
-  - React
+  - Next.js
   - TypeScript
-  - TailwindCSS
-  - Node.js
   - PostgreSQL
-  - aws
-teamSize: 4
-role: Full-Stack Developer
-githubUrl: https://github.com/project-YouNovate
+  - Prisma
+  - Tailwind CSS
+  - Docker
+teamSize: 3
+role: Development Team · Scrum Master
+githubUrl: https://github.com/cocontador/walo-saas.git
+demoUrl: "/projects/walo-demo.mp4"
 ---
 
-# Introduction
 
-Project YouNovate is a comprehensive collaboration platform tailored for software development teams. It combines task management, real-time communication, and code integration into a single, seamless experience.
+# Introducción
 
-## Key Features
+**WALO** es una plataforma SaaS multitenant diseñada para la digitalización de microemprendedores chilenos. Permite crear una vitrina digital con catálogo de productos, integración de pedidos por WhatsApp y pagos en línea con Khipu, todo optimizado para SEO desde el servidor.
 
-- **Task Management**: A Kanban-style board for tracking tasks, sprints, and milestones.
-- **Real-Time Collaboration**: Integrated chat and video conferencing for team discussions.
-- **Code Integration**: Direct integration with GitHub for pull requests, issue tracking, and code reviews.
-- **Analytics Dashboard**: Visualize team performance with metrics like velocity, code churn, and deployment frequency.
+Este proyecto forma parte del **Proyecto de Título** para la carrera de Analista Programador en **Duoc UC, Viña del Mar**.
 
-## Technical Insights
+## Contexto del Proyecto
 
-- **Frontend**: Built with React and TypeScript, the UI is highly responsive and optimized for performance. TailwindCSS was used for rapid prototyping and consistent styling.
-- **Backend**: A Node.js server with an Express framework powers the API, ensuring scalability and reliability.
-- **Database**: PostgreSQL was chosen for its robust relational data handling, with Sequelize as the ORM.
-- **Cloud Infrastructure**: Hosted on AWS, leveraging services like EC2, S3, and RDS for deployment, storage, and database management.
-- **CI/CD Pipeline**: Implemented using GitHub Actions for automated testing, linting, and deployment.
+* **Rubro**: Retail digital — comercio electrónico
+* **Segmento**: Microemprendedores y pequeños negocios
+* **Modelo**: SaaS multitenant B2B2C
+* **Mercado objetivo**: Chile
 
-| Service      | Responsibility                                       |
-| ------------ | ---------------------------------------------------- |
-| Tasks        | Kanban boards, sprints, and milestones               |
-| Chat         | Real-time messaging and video calls over `WebSocket` |
-| Integrations | GitHub pull requests, issues, and review status      |
-| Analytics    | Velocity, code churn, and deployment frequency       |
+## Descripción General
 
-## Challenges and Solutions
+WALO permite a cualquier emprendedor tener su tienda online en minutos, sin conocimientos técnicos. Cada tienda obtiene una URL pública (`walo.app/mi-tienda`), un catálogo de productos con imágenes, carrito de compras, integración directa con WhatsApp y pasarela de pago con Khipu. Los dueños de tienda gestionan su negocio mediante un panel de administración completo con métricas de ventas y clics.
 
-- **Real-Time Communication**: Implemented WebSocket-based communication for chat and notifications, ensuring low latency. Reconnection with exponential backoff and message queuing on the client kept conversations consistent through flaky networks and server restarts.
-- **Scalability**: Designed the backend with a microservices architecture to handle increasing user loads. Separating chat, task management, and analytics let each service scale independently, with a message queue decoupling the heavier background jobs.
-- **Security**: Integrated OAuth 2.0 for secure authentication and role-based access control. Permissions were enforced on the server for every request, and sensitive tokens were encrypted at rest.
-- **Keeping Boards in Sync**: Multiple people editing the same Kanban board led to conflicting updates. Optimistic UI updates combined with server-side versioning resolved conflicts predictably and kept the board feeling instant.
-- **Third-Party Rate Limits**: Heavy use of the GitHub API quickly hit rate limits. Caching responses, batching requests, and relying on webhooks instead of polling brought API usage down significantly.
-- **Dashboard Performance**: Analytics queries slowed down as data grew. Pre-aggregated metrics, proper indexing in PostgreSQL, and paginated queries kept the dashboard responsive.
+## Características Principales
 
-> ⚠️ **Lesson learned**: Most of the hard problems here, from conflicting edits to API rate limits, only showed up under _real_ team usage, never in local testing.
+- **Registro y Autenticación**: Sistema seguro de acceso para emprendedores.
+- **Vitrina Pública Multitenant**: Cada tienda cuenta con su propia ruta y catálogo personalizado.
+- **Pedidos por WhatsApp**: Envío directo de pedidos con un mensaje estructurado y automatizado.
+- **Pagos en Línea**: Integración con Khipu respaldada por webhooks de confirmación.
+- **Panel de Administración**: Gestión intuitiva de productos, categorías y visualización de planes.
+- **Suscripciones**: Sistema de planes escalables (*Inicial, Pro, Business*).
+- **Analíticas de Negocio**: Métricas detalladas con filtro por períodos de tiempo.
+- **Panel de Moderación**: Herramientas de control para administradores de la plataforma.
 
-## Outcome
+## Perspectiva Técnica
 
-Project YouNovate was successfully deployed and adopted by several development teams, improving their productivity and collaboration. The platform received positive feedback for its intuitive design and robust feature set.
+La arquitectura está construida utilizando tecnologías modernas orientadas al rendimiento, la seguridad y la escalabilidad en la nube.
 
-- **Adoption**: Teams moved their day-to-day planning, discussions, and code reviews into a single tool, reducing the need to switch between separate apps.
-- **Reliability**: The automated CI/CD pipeline enabled frequent, low-risk releases, and the architecture handled growth in users and data without major rework.
-- **Team Growth**: As a full-stack developer on a team of four, I owned features end to end, from database schema and API design to the React interface, and gained hands-on experience with real-time systems and cloud deployment.
-- **Lessons Learned**: Investing early in testing, observability, and clear service boundaries paid off as the platform grew, and is an approach I carry into every project since.
-- **Developer Experience**: Engineers could see the status of a task, its linked pull request, and the related discussion in one place, which shortened the loop between "ready for review" and "merged".
-- **Data-Driven Retrospectives**: The analytics dashboard gave teams concrete numbers on velocity, code churn, and deployment frequency to ground their sprint retrospectives in.
-- **Maintainability**: Clear service boundaries, typed APIs shared between frontend and backend, and automated tests made it straightforward for new contributors to onboard and ship changes safely.
-- **Future Directions**: Natural next steps include richer GitHub and GitLab integrations, customizable dashboards, and automated sprint summaries.
+| Capa / Módulo | Tecnología principal |
+| :--- | :--- |
+| **Framework** | Next.js 16 (App Router, React Server Components) |
+| **Lenguaje** | TypeScript |
+| **Base de Datos** | PostgreSQL (DigitalOcean Managed DB en producción) |
+| **ORM** | Prisma v7 con driver adapter (`@prisma/adapter-pg`) |
+| **Autenticación** | Auth.js (NextAuth) |
+| **Estilos & UI** | Tailwind CSS |
+| **Validación** | Zod |
+| **Storage** | Cloudflare R2 (S3-compatible) |
+| **Pagos** | Khipu |
+| **Testing** | Vitest + MSW |
+| **Infraestructura** | Docker + DigitalOcean Droplet |
+| **CI/CD** | GitHub Actions |
+
+## Estructura del Proyecto
+
+```text
+src/
+├── app/                        # Rutas Next.js (App Router)
+│   ├── [slug]/                 # Vitrina pública de cada tienda
+│   ├── dashboard/              # Panel del emprendedor (autenticado)
+│   │   ├── analytics/          # Métricas y estadísticas
+│   │   ├── billing/            # Plan y suscripción
+│   │   ├── categories/         # Gestión de categorías
+│   │   └── products/           # Gestión de productos
+│   ├── admin/                  # Panel de moderación
+│   ├── pago/[id]/              # Estado de pago post-Khipu
+│   ├── pricing/                # Página pública de precios
+│   ├── login/ register/        # Autenticación
+│   └── api/                    # API Routes (webhooks, store, auth)
+├── features/                   # Módulos por dominio
+│   ├── auth/                   # Registro, login, sesión
+│   ├── billing/                # Planes, suscripciones, límites
+│   ├── dashboard/              # Métricas, filtro de período
+│   ├── store/                  # Catálogo, carrito, pagos, tracking
+│   └── admin/                  # Moderación de tiendas
+├── lib/                        # Clientes globales (prisma, logger, khipu)
+└── server/                     # Utilidades de servidor (auth, store)
+prisma/
+├── schema.prisma               # Modelo de datos
+├── migrations/                 # Migraciones de BD
+└── seed.ts                     # Datos iniciales (planes)
+```
+
+## Desarrollo Local y Compras
+
+### Requisitos Previos
+- Node.js 20+
+- Docker y Docker Compose
+- Cuenta en Cloudflare R2 (para almacenamiento de imágenes)
+
+### Configuración inicial
+```bash
+# 1. Instalar dependencias
+npm install
+
+# 2. Copiar variables de entorno
+cp .env.example .env
+# Completar DATABASE_URL, NEXTAUTH_SECRET, R2_*, KHIPU_*
+
+# 3. Levantar base de datos local
+docker compose up -d
+
+# 4. Aplicar migraciones y datos iniciales (seed)
+npx prisma migrate dev
+npx tsx prisma/seed.ts
+
+# 5. Iniciar servidor de desarrollo
+npm run dev
+```
+
+### Comandos Útiles
+* `npm run dev`: Servidor de desarrollo
+* `npm run build`: Build de producción
+* `npm run test`: Ejecución de pruebas con Vitest
+* `npx prisma studio`: Explorador visual de la base de datos
+* `npx prisma migrate dev --name <nombre>`: Crear nueva migración
+
+## Infraestructura y Deployment
+
+La aplicación se ejecuta en un **DigitalOcean Droplet** contenedorizado con **Docker**. La base de datos opera sobre **DigitalOcean Managed PostgreSQL** y los archivos multimedia se alojan de forma segura en **Cloudflare R2**.
+
+Para actualizar el entorno de producción:
+```bash
+git pull origin dev
+docker compose -f docker-compose.prod.yml up -d --build
+```
+*(Nota: El entrypoint del contenedor ejecuta `prisma migrate deploy` de forma automática al iniciar).*
+
+## Equipo de Desarrollo
+
+* **Proyecto de Título** — Analista Programador, Duoc UC
+
+| Integrante | Rol |
+| :--- | :--- |
+| **Constanza Contador Moraga** | Development Team · Scrum Master |
+| **César Mongez Durán** | Development Team · Tech Lead |
+| **Paulina Zúñiga Alarcón** | Development Team · Full Stack |
+
+## Demostración en Video
+
+<div  id="demo-walo" className="my-6 overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-lg">
+  <video
+    controls 
+    preload="metadata" 
+    className="w-full h-auto"
+  >
+    <source src="/projects/demo-walo.mp4" type="video/mp4" />
+    Tu navegador no soporta la reproducción de video.
+  </video>
+</div>

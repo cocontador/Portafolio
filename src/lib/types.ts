@@ -30,6 +30,7 @@ export interface ProjectProps {
   role?: string
   githubUrl?: string
   paperUrl?: string
+  demoId?: string
 }
 
 /**

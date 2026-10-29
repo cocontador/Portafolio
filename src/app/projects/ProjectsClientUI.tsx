@@ -40,6 +40,7 @@ export default function ProjectsClientUI({
   currentPage: number
   totalPages: number
   baseUrl: string
+  
 }) {
   const router = useRouter()
   const searchParams = useSearchParams()

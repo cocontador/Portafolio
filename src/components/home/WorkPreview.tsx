@@ -27,7 +27,7 @@ export default function WorkPreview({ work }: WorkPreviewProps) {
       viewport={{ once: true, margin: "-100px" }}
       className="mt-20"
     >
-      <ViewAllHeader title="Work Experience" pageUrl="/work" itemCount={work.length} />
+      <ViewAllHeader title="Experiencia Laboral" pageUrl="/work" />
       <motion.div
         initial="hidden"
         whileInView="visible"

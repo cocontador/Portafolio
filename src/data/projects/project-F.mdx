@@ -1,55 +1,97 @@
 ---
-title: SmartHive
-image: /projects/pictureF.jpg
-description: An IoT solution for smart beekeeping.
-startDate: 2020-02
-endDate: 2020-08
+title: "Bosque Antiguo App"
+image: "/projects/app-bosque.png"
+demoId: "demo-app"
+description: "Adaptación móvil nativa en Android de la tienda online Bosque Antiguo."
+startDate: "2025-01"
+endDate: "2025-03"
 techStack:
-  - Arduino
-  - Raspberry Pi
-  - Python
-  - React
-teamSize: 5
-role: IoT Engineer
-githubUrl: https://github.com/project-SmartHive
+  - Kotlin
+  - Jetpack Compose
+  - Android
+teamSize: 3
+role: Mobile Developer (Android)
+githubUrl: "https://github.com/cocontador/BosqueAntiguo.git"
+demoUrl: "/projects/demo-app.mp4"
+
 ---
+# Introducción
 
-# Introduction
+**Bosque Antiguo App** es la adaptación móvil del proyecto web original *Bosque Antiguo*, desarrollada con **Kotlin** y **Jetpack Compose** como parte del curso *Desarrollo de Aplicaciones Móviles (DSY1105)*.
 
-Project SmartHive integrates IoT devices to create a connected home ecosystem. It allows users to control and monitor their homes remotely through a mobile app.
+Esta versión traslada la esencia de la tienda online a una aplicación Android nativa, enfocándose en el diseño visual moderno, la fluidez en la experiencia de usuario y el aprovechamiento de los recursos del dispositivo.
 
-> 💡 **In short**: SmartHive connects cheap sensors and devices into one system that is simple to control and easy to extend.
+## Características Principales
 
-## Key Features
+- **Pantalla principal (Home)**: Navegación fluida e intuitiva entre las diferentes secciones de la aplicación.
+- **Formularios inteligentes**: Campos con validaciones visuales y lógicas de negocio desacopladas.
+- **Persistencia local**: Almacenamiento estructurado mediante **Room Database** y preferencias de usuario con **DataStore**.
+- **Recursos nativos**: Integración directa con la cámara y galería del dispositivo Android.
+- **Experiencia visual**: Animaciones fluidas y retroalimentación interactiva constante.
 
-- **Device Control**: Control lights, appliances, and thermostats remotely.
-- **Energy Monitoring**: Track energy consumption and optimize usage.
-- **Security**: Real-time alerts for unauthorized access and live camera feeds.
-- **Voice Commands**: Integration with voice assistants like Alexa and Google Assistant.
+## Objetivo del Proyecto
 
-## Technical Insights
+Explorar el desarrollo de interfaces móviles estructuradas y funcionales, aplicando conceptos avanzados de ingeniería de software móvil:
 
-- **IoT Devices**: Used Arduino and Raspberry Pi for device control and data collection.
-- **Communication Protocol**: Implemented MQTT for efficient communication between devices.
-- **Backend**: Developed a Python-based server for processing and storing data.
-- **Frontend**: Built a React app for user interaction and control.
+- Usabilidad y jerarquía visual estricta.
+- Gestión reactiva del estado con **ViewModel**.
+- Persistencia segura de datos y acceso controlado al hardware del dispositivo.
 
-## Challenges and Solutions
+## Perspectiva Técnica
 
-- **Interoperability**: Designed a modular system to support a wide range of devices. Each device type got a small adapter that translated its protocol into a common message format, so new hardware did not require changes to the core.
-- **Latency**: Optimized communication protocols to reduce response times. MQTT with appropriate quality-of-service levels, compact payloads, and local processing on the Raspberry Pi kept commands feeling instant.
-- **Security**: Implemented encryption and secure authentication to protect user data. TLS on all connections, per-device credentials, and signed firmware updates limited the damage a single compromised device could do.
-- **Limited Hardware Resources**: Arduino boards have very little memory and processing power. Keeping firmware lean, offloading heavier work to the Raspberry Pi, and sending only the data that changed made the most of the hardware.
-- **Unreliable Connectivity**: Wi-Fi drops are common in real homes. Devices buffered readings locally, reconnected automatically, and replayed missed data so monitoring stayed continuous.
-- **Power Consumption**: Battery-powered sensors needed to last for months. Deep-sleep cycles, event-driven wake-ups, and batching transmissions extended battery life considerably.
-- **Sensor Noise and Calibration**: Raw sensor readings were noisy and drifted over time. Filtering, periodic calibration, and sanity checks reduced false alerts and made energy data trustworthy.
+| Componente / Tecnología | Responsabilidad técnica |
+| :--- | :--- |
+| **Kotlin / Jetpack Compose** | Interfaz declarativa moderna bajo los lineamientos de *Material 3* |
+| **Navigation Compose** | Gestión del enrutamiento y navegación fluida entre pantallas |
+| **Room Database** | Capa de base de datos relacional local para persistencia |
+| **DataStore & Coil** | Preferencias ligeras de usuario y carga asíncrona optimizada de imágenes |
 
-## Outcome
+## Estructura del Proyecto
 
-Project SmartHive was deployed in a model home and demonstrated its potential to simplify daily life. It received interest from smart home enthusiasts and IoT startups.
+```text
+app/
+├─ manifests/
+│  └─ AndroidManifest.xml
+│
+├─ kotlin+java/
+│  └─ com/
+│     └─ example/
+│        └─ bosqueantiguo/
+│           ├─ model/ (AppDatabase, Usuario, UsuarioDao)
+│           ├─ repository/ (UsuarioRepository)
+│           ├─ ui/
+│           │  ├─ theme/ (Color, Theme, Type)
+│           │  ├─ view/ (AjustesScreen, FormularioScreen, MainScreen, PerfilScreen, ProductoScreen, ResumenScreen)
+│           │  └─ viewmodel/ (UsuarioErrores, UsuarioUIState, UsuarioViewModel, UsuarioViewModelFactory)
+│           ├─ BosqueAntiguoApp.kt
+│           └─ MainActivity.kt
+│
+├─ res/ (drawable, mipmap, values, xml)
+└─ Gradle Scripts (build.gradle.kts, libs.versions.toml, local.properties, etc.)
+```
 
-- **Practical Validation**: The model home deployment ran continuously for weeks, showing the system worked outside the lab with real devices and everyday use.
-- **Energy Awareness**: Energy monitoring helped residents spot wasteful devices and adjust their habits.
-- **Extensibility**: The modular design made adding a new device type a matter of writing a small adapter rather than reworking the system.
-- **Technical Takeaways**: The team gained hands-on experience with MQTT, embedded constraints on low-power hardware, and securing connected devices.
-- **Future Directions**: Next steps include local-first operation for resilience when the internet is down, automation rules driven by usage patterns, and support for newer standards like Matter.
+## Inspiración y Origen
+
+Proyecto basado en la versión web original *Bosque Antiguo*, desarrollada con HTML, CSS y JavaScript, ahora llevada al ecosistema móvil para potenciar la accesibilidad, el rendimiento y la comodidad del usuario en Android.
+
+## Equipo de Desarrollo y Licencia
+
+- Paulina Zúñiga
+- César Mongez
+- **Constanza Contador**
+
+> *Proyecto académico sin fines comerciales.*
+> © 2025 — Equipo Bosque Antiguo
+
+## Demostración en Video
+
+<div id="demo-app" className="my-6 max-w-xs mx-auto overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-lg">
+  <video
+    controls 
+    preload="metadata" 
+    className="w-full h-auto"
+  >
+    <source src="/projects/demo-app.mp4" type="video/mp4" />
+    Tu navegador no soporta la reproducción de video.
+  </video>
+</div>

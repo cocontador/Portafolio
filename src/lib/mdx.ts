@@ -145,6 +145,7 @@ export async function getAllProjects(): Promise<ProjectProps[]> {
     role: fm.role,
     githubUrl: fm.githubUrl,
     paperUrl: fm.paperUrl,
+    demoId: fm.demoId,
   }))
 
   return cachedProjects

@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FaCalendarAlt } from "react-icons/fa"
+import { FiVideo } from "react-icons/fi"
 import AnimatedCard from "@/components/AnimatedCard"
 import TechBadge from "@/components/TechBadge"
 import { MAX_PROJECT_TILE_TECH_BADGES } from "@/lib/constants"
@@ -17,12 +18,11 @@ interface ProjectTileProps {
   startDate?: string
   endDate?: string
   priority?: boolean
+  demoId?: string
 }
 
 /**
  * A functional component that renders a project tile with a link, image, title, dates, duration, and tech stack.
- *
- * @param {Object} props - The prop object for the component.
  */
 export default function ProjectTile({
   slug,
@@ -33,6 +33,8 @@ export default function ProjectTile({
   startDate,
   endDate,
   priority = false,
+  demoId,
+
 }: ProjectTileProps) {
   return (
     <Link href={`/projects/${slug}`} className="block h-full">
@@ -74,7 +76,7 @@ export default function ProjectTile({
             "flex flex-col gap-3"
           )}
         >
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center gap-2">
             <h3
               className={cn(
                 "text-lg font-bold text-gray-900 dark:text-white",
@@ -84,8 +86,28 @@ export default function ProjectTile({
             >
               {title}
             </h3>
+
+            {/* Botón Ver Demo integrado a tono con el carrusel */}
+            {/* Botón dinámico */}
+            <span
+            onClick={(e) => {
+              e.preventDefault()
+              // Navegación directa con el hash limpio y respaldo por si demoId viene vacío
+              window.location.href = `/projects/${slug}#${demoId || "demo-video"}`
+            }}
+            className={cn(
+              "inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium",
+              "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300",
+              "border border-gray-300 dark:border-gray-700",
+              "hover:border-accent-500 dark:hover:border-accent-400 hover:text-accent-500 dark:hover:text-accent-400",
+              "transition-all cursor-pointer shadow-xs"
+            )}
+          >
+            <FiVideo className="w-3.5 h-3.5 text-accent-500" />
+            Ver Demo
+          </span>
             {description && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed text-center">
+              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed text-center mt-1">
                 {description}
               </p>
             )}

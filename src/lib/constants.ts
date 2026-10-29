@@ -5,10 +5,10 @@ import packageJson from "../../package.json"
  */
 export const navItems = [
   { name: "Home", path: "/" },
-  { name: "Work", path: "/work" },
-  { name: "Projects", path: "/projects" },
-  { name: "Blog", path: "/blog" },
+  { name: "Trabajos", path: "/work" },
+  { name: "Proyectos", path: "/projects" },
 ]
+
 
 /**
  * Array of navigation items for the website (i.e. paths/pages to navigate to) that are

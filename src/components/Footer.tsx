@@ -1,54 +1,123 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
-import { FaCodeBranch } from "react-icons/fa"
+import { FaCodeBranch, FaCheck, FaFilePdf } from "react-icons/fa"
 import { footerConfig, socialIconMap } from "@/data/content"
 import { appVersion } from "@/lib/constants"
 import { SocialPlatform } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
 /**
- * Internal component to render social media links
+ * Internal component to render social media links and CV download button
  */
 function SocialLinks() {
+  const [copied, setCopied] = useState(false)
+
   return (
-    <>
+    <div className="flex items-center justify-center gap-4 flex-wrap">
       {Object.entries(footerConfig.socialLinks)
         .filter(([_, url]) => url && url.trim() !== "")
         .map(([platform, url]) => {
           const platformKey = platform as SocialPlatform
-          const { icon: Icon, label } = socialIconMap[platformKey]
+          const socialLink = socialIconMap[platformKey]
 
-          // Add mailto: prefix for email if not already present
-          const href =
-            platformKey === SocialPlatform.Email && !url.startsWith("mailto:")
-              ? `mailto:${url}`
-              : url
+          if (!socialLink) return null
+
+          const { icon: Icon, label } = socialLink
+          const isEmail = platform === "email"
+
+          // Manejador para copiar el correo y abrir el cliente de correo
+          const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+            if (isEmail) {
+              e.preventDefault()
+              const emailAddress = url.replace("mailto:", "")
+              
+              // 1. Copiar al portapapeles
+              navigator.clipboard.writeText(emailAddress).then(() => {
+                setCopied(true)
+                setTimeout(() => setCopied(false), 2500)
+              })
+
+              // 2. Abrir de forma garantizada el cliente de correo
+              window.open(`mailto:${emailAddress}`, "_self")
+            }
+          }
+
+          const href = isEmail && !url.startsWith("mailto:") ? `mailto:${url}` : url
 
           return (
-            <Link
-              key={label}
-              href={href}
-              aria-label={label}
-              target={href.startsWith("mailto") ? "_blank" : undefined}
-              className={cn(
-                "group relative flex items-center justify-center w-11 h-11",
-                "rounded-lg border border-gray-300 dark:border-gray-700",
-                "bg-gray-100 dark:bg-gray-800",
-                "text-gray-700 dark:text-gray-300",
-                "hover:border-accent-500 dark:hover:border-accent-400",
-                "hover:bg-accent-500/10 dark:hover:bg-accent-500/10",
-                "hover:text-accent-600 dark:hover:text-accent-400",
-                "transition-all duration-200",
-                "hover:scale-110 hover:shadow-md",
-                "active:scale-95",
-                "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
-                "focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black"
+            <div key={label} className="relative group/tooltip">
+              <Link
+                href={href}
+                onClick={handleClick}
+                aria-label={label}
+                target={isEmail ? undefined : "_blank"}
+                rel={isEmail ? undefined : "noopener noreferrer"}
+                className={cn(
+                  "group relative flex items-center justify-center w-11 h-11",
+                  "rounded-lg border border-gray-300 dark:border-gray-700",
+                  "bg-gray-100 dark:bg-gray-800",
+                  "text-gray-700 dark:text-gray-300",
+                  "hover:border-accent-500 dark:hover:border-accent-400",
+                  "hover:bg-accent-500/10 dark:hover:bg-accent-500/10",
+                  "hover:text-accent-600 dark:hover:text-accent-400",
+                  "transition-all duration-200",
+                  "hover:scale-110 hover:shadow-md",
+                  "active:scale-95",
+                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
+                  "focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black"
+                )}
+              >
+                {isEmail && copied ? (
+                  <FaCheck className="w-5 h-5 text-green-500 animate-bounce" />
+                ) : (
+                  <Icon className="w-5 h-5" />
+                )}
+              </Link>
+
+              {/* Tooltip de aviso cuando se copia */}
+              {isEmail && copied && (
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded-md whitespace-nowrap shadow-md pointer-events-none dark:bg-white dark:text-black">
+                  ¡Correo copiado!
+                </span>
               )}
-            >
-              <Icon className="w-5 h-5" />
-            </Link>
+            </div>
           )
         })}
-    </>
+
+      {/* Botón de descarga de CV en PDF */}
+      <div className="relative group/tooltip">
+        <a
+          href="/projects/cv.pdf"
+          download="Constanza_Contador_CV.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Descargar CV"
+          className={cn(
+            "group relative flex items-center justify-center w-11 h-11",
+            "rounded-lg border border-gray-300 dark:border-gray-700",
+            "bg-gray-100 dark:bg-gray-800",
+            "text-gray-700 dark:text-gray-300",
+            "hover:border-accent-500 dark:hover:border-accent-400",
+            "hover:bg-accent-500/10 dark:hover:bg-accent-500/10",
+            "hover:text-accent-600 dark:hover:text-accent-400",
+            "transition-all duration-200",
+            "hover:scale-110 hover:shadow-md",
+            "active:scale-95",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
+            "focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black"
+          )}
+        >
+          <span className="text-xs font-bold tracking-tight">CV</span>
+        </a>
+
+        {/* Tooltip opcional al pasar el mouse */}
+        <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded-md whitespace-nowrap shadow-md pointer-events-none opacity-0 group-hover/tooltip:opacity-100 transition-opacity dark:bg-white dark:text-black">
+          Descargar CV
+        </span>
+      </div>
+    </div>
   )
 }
 
@@ -99,20 +168,13 @@ export default function Footer() {
               "hover:shadow-sm"
             )}
           >
-            <FaCodeBranch className="w-3 h-3 text-gray-500 dark:text-gray-500" />
-            <span className="font-semibold text-accent-600 dark:text-accent-400">{appVersion}</span>
+            <FaCodeBranch className="w-3.5 h-3.5" />
+            <span>v{appVersion}</span>
           </Link>
 
-          <span className="text-gray-500 dark:text-gray-500">
-            built by{" "}
-            <Link
-              href="https://github.com/alemoraru"
-              rel="noopener noreferrer"
-              className="font-semibold hover:text-accent-500 dark:hover:text-accent-400 transition-colors duration-200"
-            >
-              @alemoraru
-            </Link>
-          </span>
+          <span className="text-gray-400 dark:text-gray-600">•</span>
+
+          <span>Built with Next.js</span>
         </div>
       )}
     </footer>

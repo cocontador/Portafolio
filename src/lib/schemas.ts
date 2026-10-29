@@ -30,6 +30,7 @@ export const ProjectFrontmatterSchema = z.object({
   role: z.string().optional(),
   githubUrl: z.string().optional(),
   paperUrl: z.string().optional(),
+  demoId: z.string().optional(),
 })
 
 export type BlogPostFrontmatter = z.infer<typeof BlogFrontmatterSchema>

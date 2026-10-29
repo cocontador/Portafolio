@@ -1,61 +1,82 @@
 ---
-title: FinAI
-image: /projects/pictureC.jpg
-description: An AI-driven financial analysis tool.
-startDate: 2021-06
-endDate: 2021-12
+title: Movilidad y Kinesiología — Everton de Viña del Mar
+image: /projects/ever.jpeg
+demoId: "demo-ever"
+description: Página web ligera y accesible como herramienta de apoyo práctico para kinesiología durante la práctica en Everton de Viña del Mar.
+startDate: 2025-06
+endDate: 2025-08
 techStack:
-  - Python
-  - TensorFlow
-  - Flask
-  - React Native
-  - MongoDB
-teamSize: 3
-role: AI Engineer
-githubUrl: https://github.com/project-FinAI
-paperUrl: https://arxiv.org
+  - HTML5
+  - CSS3
+  - JavaScript
+  - Git & GitHub
+teamSize: 1
+role: Frontend & Web Developer
+githubUrl: https://github.com/cocontador/Movilidad-Everton.git
+demoUrl: "/projects/demo-ever.mp4"
 ---
 
-# Introduction
+# Introducción
 
-Project FinAI is a mobile application that uses artificial intelligence to provide personalized financial advice. It helps users make informed decisions about their spending and savings.
+Esta página web fue desarrollada como una herramienta de apoyo práctico para estudiante de Kinesiología de la **Universidad Andrés Bello (UNAB)** durante su periodo de práctica profesional en el club **Everton de Viña del Mar**.
 
-## Key Features
+El proyecto consiste en una interfaz web ligera, accesible y directa, diseñada para visualizar de manera ordenada pautas de movilidad, ejercicios correctivos y recursos audiovisuales (GIFs demostrativos) orientados a la evaluación y recuperación de deportistas. Su objetivo principal es optimizar la guía y el seguimiento kinésico dentro del entorno del club.
 
-- **Expense Tracking**: Automatically categorizes transactions and provides spending insights.
-- **Budget Planning**: Suggests budgets based on user income and spending patterns.
-- **Goal Setting**: Helps users set and achieve financial goals with actionable recommendations.
-- **AI Chatbot**: Provides real-time financial advice through a conversational interface.
+## Características Principales
 
-## Technical Insights
+* **Visualización Dinámica**: Integración de recursos en formato GIF para asegurar la correcta ejecución de los ejercicios de movilidad articular y estiramientos.
+* **Identidad Institucional**: Inclusión de elementos visuales oficiales (como el escudo de Everton) para mantener un estándar profesional acorde a la institución.
+* **Diseño Responsivo y Ligero**: Pensado para ser consultado rápidamente desde dispositivos móviles, tablets o notebooks directamente en el terreno de entrenamiento o consulta clínica.
 
-- **AI Models**: Built predictive models using TensorFlow to analyze spending patterns and forecast future expenses.
-- **Backend**: Developed a Flask API to handle user data and integrate AI functionalities.
-- **Mobile App**: Created a cross-platform app using React Native for iOS and Android.
-- **Database**: Used MongoDB for storing user data securely and efficiently.
+## Perspectiva Técnica
 
-| Model       | Input                        | Output                                 |
-| ----------- | ---------------------------- | -------------------------------------- |
-| Categorizer | Raw transaction descriptions | Spending category                      |
-| Forecaster  | Spending history             | Expected expenses for the coming weeks |
-| Advisor     | User goals and patterns      | Personalized, explainable suggestions  |
+La aplicación se construyó utilizando tecnologías web esenciales, priorizando un rendimiento rápido y cero dependencias pesadas para asegurar su disponibilidad inmediata en cualquier dispositivo.
 
-## Challenges and Solutions
+| Tecnología / Recurso | Propósito en el proyecto |
+| :--- | :--- |
+| **HTML5** | Estructura semántica clara para la visualización de contenidos y pautas. |
+| **CSS3** | Estilos adaptados con la identidad visual institucional y paleta de colores del club. |
+| **JavaScript** | Interactividad básica para la visualización fluida de los recursos y la navegación. |
+| **Git & GitHub** | Control de versiones y gestión de código y recursos multimedia. |
 
-- **Data Privacy**: Implemented encryption and anonymization techniques to protect user data. Sensitive fields were encrypted at rest, and training data was anonymized so models never saw personally identifiable information.
-- **Accuracy**: Trained AI models on diverse datasets to improve prediction accuracy. Cross-validation, regular retraining, and per-segment evaluation helped catch cases where the model worked well on average but poorly for specific user groups.
-- **Integration**: Ensured seamless integration of AI features with the mobile app. A versioned Flask API with clear response schemas let the mobile and ML work progress in parallel without breaking each other.
-- **Transaction Categorization**: Bank descriptions are messy and inconsistent. Combining rule-based cleaning, merchant matching, and an ML classifier with user corrections fed back as training data improved categorization over time.
-- **Cold Start**: New users had no history for the models to learn from. Starting with sensible defaults based on similar user profiles and gradually personalizing as data accumulated gave useful advice from day one.
-- **Explainability**: Users were reluctant to follow advice they did not understand. Showing the reasoning behind each recommendation, such as which spending categories drove a suggestion, increased trust.
-- **Mobile Performance**: Large transaction lists made the app feel sluggish on older phones. List virtualization, local caching, and incremental sync kept scrolling smooth and the app usable offline.
+## Estructura del Repositorio
 
-## Outcome
+```text
+Movilidad-Everton/
+│
+├── assets/
+│   ├── gifs/               # Animaciones y demostraciones de ejercicios de movilidad
+│   └── escudo-everton.png  # Insignia institucional del club
+│
+├── index.html              # Página principal con la interfaz de ejercicios
+└── README.md               # Documentación del proyecto
+```
 
-Project FinAI was launched on app stores and received positive feedback for its user-friendly interface and accurate financial insights. It helped users save an average of 15% on monthly expenses.
+## Contexto Académico y Autoría
 
-- **User Engagement**: Features like goal tracking and the AI chatbot kept users coming back regularly, rather than only checking in at the end of the month.
-- **Model Quality**: Continuous retraining on new, anonymized data steadily improved how well transactions were categorized and how closely expense forecasts matched reality.
-- **Trust and Privacy**: Clear data handling and end-to-end encryption were frequently mentioned in feedback as a reason users felt comfortable linking their financial data.
-- **Cross-Platform Delivery**: A single React Native codebase let a team of three ship to both iOS and Android without duplicating effort.
-- **Future Directions**: Planned improvements include investment insights, bill reminders, and more explainable recommendations that show users why a suggestion was made.
+* **Institución de Origen**: Universidad Andrés Bello (UNAB) — Carrera de Kinesiología (Práctica Profesional)
+* **Institución de Destino**: Everton de Viña del Mar
+* **Desarrollo**: Constanza Contador Moraga
+
+> ⚠️ **Nota de desarrollo**: Diseñar esta herramienta bajo un entorno web ligero demostró cómo la tecnología puede integrarse directamente en el área de la salud deportiva para agilizar procesos clínicos en terreno.
+
+## Resultado
+
+El desarrollo permitió proveer al equipo de kinesiología de una solución digital rápida y funcional para el apoyo de deportistas en recuperación.
+
+* **Accesibilidad Inmediata**: Acceso sin fricciones a pautas de ejercicios mediante interfaces limpias.
+* **Impacto Práctico**: Optimización de los tiempos de consulta y demostración de movimientos kinésicos.
+
+
+## Demostración en Video
+
+<div id="demo-ever" className="my-6 max-w-xs mx-auto overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-lg">
+  <video
+    controls 
+    preload="metadata" 
+    className="w-full h-auto"
+  >
+    <source src="/projects/demo-ever.mp4" type="video/mp4" />
+    Tu navegador no soporta la reproducción de video.
+  </video>
+</div>
