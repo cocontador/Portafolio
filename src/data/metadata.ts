@@ -8,27 +8,26 @@ import type { Metadata } from "next"
 export const siteMetadata: SiteMetadata = {
   /**
    * Accent color theme for the portfolio.
-   * Options: "blue" | "purple" | "green" | "orange" | "rose" | "teal" | "indigo" | "amber" | "cyan" | "violet" | "pink" | "lime"
-   * The chosen theme controls the accent color used across all components.
    */
   theme: "blue",
 
   /**
    * Site title (shown in browser tabs and search results)
    */
-  title: "Next.js Developer Portfolio Template",
+  title: "Constanza Contador — Portafolio Profesional",
 
   /**
    * Site description (shown in search results and social media)
    */
   description:
-    "Developer portfolio showcasing projects, work experience, and technical blog posts. Built with Next.js, TypeScript, and Tailwind CSS.",
+    "Portafolio profesional de Constanza Contador, analista programadora y desarrolladora de software. Explora mis proyectos, experiencia y habilidades técnicas.",
 
   /**
    * Keywords for SEO
    */
   keywords: [
-    "Developer",
+    "Constanza Contador",
+    "Analista Programadora",
     "Software Engineer",
     "Next.js",
     "React",
@@ -41,36 +40,31 @@ export const siteMetadata: SiteMetadata = {
    * Author information
    */
   author: {
-    name: "Alexandru Moraru",
-    url: "https://alexradumoraru.com",
+    name: "Constanza Contador",
+    url: "https://www.linkedin.com/in/cocontador",
   },
 
   /**
-   * Base URL of your website (used for canonical URLs and Open Graph).
-   * Set NEXT_PUBLIC_SITE_URL in your environment (e.g. .env.local) to override the default.
+   * Base URL of your website
    */
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://nextjs-portofolio-website.vercel.app",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://portafolioconstanzacontador.vercel.app",
 
   /**
    * Social media handles
    */
   social: {
-    twitter: "@alexradumoraru",
+    twitter: "@cocontador",
   },
 
   /**
    * Optional: Custom Open Graph image for the index (home) page.
-   * Set this to the path of an image in your public folder (e.g. "/og-image.png").
-   * Set to null to use the auto-generated dynamic OG image instead.
-   *
-   * Note: /blog, /projects, and /work always use dynamically generated OG images.
+   * Si dejas esto en null, usará la imagen generada automáticamente.
    */
   ogImage: null,
 }
 
 /**
  * Generate the complete metadata object for Next.js
- * This is used in layout.tsx
  */
 export const metadata: Metadata = {
   title: siteMetadata.title,
@@ -104,7 +98,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "es_CL",
     title: siteMetadata.title,
     description: siteMetadata.description,
     url: siteMetadata.siteUrl,
